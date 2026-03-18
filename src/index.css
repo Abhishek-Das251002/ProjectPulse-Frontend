@@ -1,0 +1,237 @@
+/* for login and signup page */
+
+.loginScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.logInBox {
+    width: 30%;
+    margin-top: 15vh;
+}
+
+.logInBox label{
+    margin: 10px 1.8rem;
+}
+
+.logInBox input{
+    margin: 0rem 1.8rem;
+    width: 90%;
+    border: 1px solid #1A1D29;
+}
+
+.logInBox button{
+    margin: 1.5rem 1.8rem;
+    width: 90%;
+    background: #2F3E8F;
+    color: #fff;
+    border: 1px solid #2F3E8F;
+    padding: 7px 0px;
+    border-radius: 8px;
+}
+
+
+/* Dashboard page */
+
+.multi-line-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tagPill{
+    background-color: #FDEBD0;
+    color: #E67E22;
+    font-size: 0.85rem;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+.tagPillSuccess{
+    background-color: #E8F6F0;
+    color: #2E8B57;
+    font-size: 0.85rem;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+.dbHeadings{
+    display: flex;
+    justify-content: space-between;    
+}
+
+.projCard{
+    cursor: pointer;
+}
+
+/* Task Modal */
+
+.taskModalBody label{
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+.taskModalBody .owners{
+    display: inline-flex;
+}
+
+.taskModalBody .tags{
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+
+/* Navigation */
+.myNavbar{
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Full viewport height */
+    background-color: #F4F6F9;
+    z-index: 100; /* Ensures it stays on top */
+}
+
+.navigation li{
+    margin: 1rem 0rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    list-style-type: none;   
+}
+
+.active{
+    color: #2F3E8F;
+}
+
+/* Body */
+
+.body{
+    margin-left: 2rem;
+    margin-right: 5rem;
+}
+/* Search Bar & Icon */
+
+.searchIcon {
+    border: 2px solid #2F3E8F;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #2F3E8F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 2.5rem;
+    border-left: 0px;
+    cursor: pointer;
+}
+
+
+.searchInput {
+    width: 100%;
+    height: 2.5rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid gray;
+}
+
+.searchInput:focus {
+    outline: none;
+    border: 2px solid #2F3E8F;
+    box-shadow: 0px 0px 0px 0.2px #2F3E8F;
+}
+
+/* Task table */
+
+.taskTable thead th{
+    border: none;
+    background-color: #2F6F6F;
+    color: #fff;
+    padding: 15px 8px;
+}
+
+table{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.taskTable thead {
+    border: 2px solid #2F6F6F;
+}
+
+.taskTable tbody td, .taskTable tbody th{
+    border: 2px solid gray
+}
+
+.filterOptions div{
+    display: inline-flex;
+}
+
+.filterOptions{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.priorityBtn div{
+    border: 2px solid gray
+}
+
+.taskArrow{
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.taskArrow:hover {
+    color: #2F3E8F;
+}
+
+.filterBtn{
+    background-color: #fff;
+    border: 1px solid black;    
+}
+
+.filterBtn:hover{
+    background-color: #2F6F6F;
+    color: #fff;
+    border: 2px solid #fff;    
+    cursor: pointer;
+}
+
+
+/* teams & team Details page*/
+
+.teamCard{
+    cursor: pointer;
+}
+
+.memberModalBody label{
+    margin-bottom: 10px;
+}
+
+.memberModalBody input{
+    margin-bottom: 10px;
+}
+
+/* Reports page */
+
+.allGraphs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.barGraph{
+    width: 900px;
+    height: 500px;
+    margin: 2rem 0rem
+}
