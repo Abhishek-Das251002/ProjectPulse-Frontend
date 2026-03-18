@@ -24,140 +24,147 @@ const AllReports = () => {
         <div className="row">
             <Navbar page={"report"}/>
             <div className="col-10">
-                <div style={{margin: "2rem 2rem"}}>
-                    <h2>Report</h2>
-                </div>
-                <div className="body">
-                    {pendingData && closedByOwner && closedByTeam && closedByProject && closedLW &&
-                    <div className="allGraphs">
-                        <div className="barGraph">
-                            <Bar
-                                data={{
-                                    labels: Object.keys(pendingData),
-                                    datasets: [
-                                        {
-                                            label: "Work Pending (In Days)",
-                                            data: Object.values(pendingData),
-                                            backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
-                                            borderRadius: 5,
-                                        },
-                                    ]
-                                }}
-                                options={{
-                                    plugins: {
-                                        title: {
-                                            text: `Days of Work Pending (Total ${Object.values(pendingData).reduce((acc, curr) => acc = acc + curr,0)} Days of Work Pending)`,
-                                            font: {
-                                                size: 20
-                                            }
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                        <div className="barGraph">
-                            <Bar
-                                data={{
-                                    labels: Object.keys(closedByOwner),
-                                    datasets: [
-                                        {
-                                            label: "Tasks Completed",
-                                            data: Object.values(closedByOwner),
-                                            backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
-                                            borderRadius: 5,
-                                        },
-                                    ]
-                                }}
-                                options={{
-                                    plugins: {
-                                        title: {
-                                            text: "Tasks Closed by Owner",
-                                            font: {
-                                                size: 20
-                                            }
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                        <div className="barGraph">
-                            <Bar
-                                data={{
-                                    labels: Object.keys(closedByTeam),
-                                    datasets: [
-                                        {
-                                            label: "Tasks Completed",
-                                            data: Object.values(closedByTeam),
-                                            backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
-                                            borderRadius: 5,
-                                        },
-                                    ]
-                                }}
-                                options={{
-                                    plugins: {
-                                        title: {
-                                            text: "Tasks Closed by Team",
-                                            font: {
-                                                size: 20
-                                            }
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                        <div className="barGraph">
-                            <Bar
-                                data={{
-                                    labels: Object.keys(closedByProject),
-                                    datasets: [
-                                        {
-                                            label: "Tasks Completed",
-                                            data: Object.values(closedByProject),
-                                            backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
-                                            borderRadius: 5,
-                                        },
-                                    ]
-                                }}
-                                options={{
-                                    plugins: {
-                                        title: {
-                                            text: "Tasks Closed by Project",
-                                            font: {
-                                                size: 20
-                                            }
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                        <div className="barGraph">
-                            <Bar
-                                data={{
-                                    labels: Object.keys(closedLW),
-                                    datasets: [
-                                        {
-                                            label: "Tasks Closed",
-                                            data: Object.values(closedLW),
-                                            backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
-                                            borderRadius: 5,
-                                        },
-                                    ]
-                                }}
-                                options={{
-                                    plugins: {
-                                        title: {
-                                            text: `Work Done Last Week (Total ${Object.values(closedLW).reduce((acc, curr) => acc = acc + curr,0)} tasks closed last week)`,
-                                            font: {
-                                                size: 20
-                                            }
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
+                {pendingData && closedByOwner && closedByTeam && closedByProject && closedLW
+                ?
+                <div>
+                    <div style={{margin: "2rem 2rem"}}>
+                        <h2>Report</h2>
                     </div>
-                    }
+                    <div className="body">
+                        {pendingData && closedByOwner && closedByTeam && closedByProject && closedLW &&
+                        <div className="allGraphs">
+                            <div className="barGraph">
+                                <Bar
+                                    data={{
+                                        labels: Object.keys(pendingData),
+                                        datasets: [
+                                            {
+                                                label: "Work Pending (In Days)",
+                                                data: Object.values(pendingData),
+                                                backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
+                                                borderRadius: 5,
+                                            },
+                                        ]
+                                    }}
+                                    options={{
+                                        plugins: {
+                                            title: {
+                                                text: `Days of Work Pending (Total ${Object.values(pendingData).reduce((acc, curr) => acc = acc + curr,0)} Days of Work Pending)`,
+                                                font: {
+                                                    size: 20
+                                                }
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <div className="barGraph">
+                                <Bar
+                                    data={{
+                                        labels: Object.keys(closedByOwner),
+                                        datasets: [
+                                            {
+                                                label: "Tasks Completed",
+                                                data: Object.values(closedByOwner),
+                                                backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
+                                                borderRadius: 5,
+                                            },
+                                        ]
+                                    }}
+                                    options={{
+                                        plugins: {
+                                            title: {
+                                                text: "Tasks Closed by Owner",
+                                                font: {
+                                                    size: 20
+                                                }
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <div className="barGraph">
+                                <Bar
+                                    data={{
+                                        labels: Object.keys(closedByTeam),
+                                        datasets: [
+                                            {
+                                                label: "Tasks Completed",
+                                                data: Object.values(closedByTeam),
+                                                backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
+                                                borderRadius: 5,
+                                            },
+                                        ]
+                                    }}
+                                    options={{
+                                        plugins: {
+                                            title: {
+                                                text: "Tasks Closed by Team",
+                                                font: {
+                                                    size: 20
+                                                }
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <div className="barGraph">
+                                <Bar
+                                    data={{
+                                        labels: Object.keys(closedByProject),
+                                        datasets: [
+                                            {
+                                                label: "Tasks Completed",
+                                                data: Object.values(closedByProject),
+                                                backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
+                                                borderRadius: 5,
+                                            },
+                                        ]
+                                    }}
+                                    options={{
+                                        plugins: {
+                                            title: {
+                                                text: "Tasks Closed by Project",
+                                                font: {
+                                                    size: 20
+                                                }
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <div className="barGraph">
+                                <Bar
+                                    data={{
+                                        labels: Object.keys(closedLW),
+                                        datasets: [
+                                            {
+                                                label: "Tasks Closed",
+                                                data: Object.values(closedLW),
+                                                backgroundColor: ["#1F6F6F", "#C26A00", "#6B2C5C"],
+                                                borderRadius: 5,
+                                            },
+                                        ]
+                                    }}
+                                    options={{
+                                        plugins: {
+                                            title: {
+                                                text: `Work Done Last Week (Total ${Object.values(closedLW).reduce((acc, curr) => acc = acc + curr,0)} tasks closed last week)`,
+                                                font: {
+                                                    size: 20
+                                                }
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </div>
+                        }
+                    </div>                                   
                 </div>
+                :
+                <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
+                }
             </div>
         </div>
     )
