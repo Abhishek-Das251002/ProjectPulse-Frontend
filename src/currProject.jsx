@@ -82,8 +82,6 @@ const CurrProject = () => {
                             </div> 
                         ))}
                     </div>
-                    {filterData.length !== 0
-                    ?
                     <div className="body">
                         <div className="filterOptions mb-3">
                             <div>
@@ -119,6 +117,8 @@ const CurrProject = () => {
                                 </div>
                             </div>
                         </div>
+                        {filterData.length !== 0
+                        ?
                         <div className="taskTable">
                             <table className="table">
                             <thead>
@@ -145,10 +145,10 @@ const CurrProject = () => {
                             </tbody>
                             </table>
                         </div>
-                    </div>
-                    :
-                    <p className="fs-5 my-4 text-center"><em>"Tasks are not added to this project yet."</em></p>
-                    } 
+                        :
+                        <p className="fs-5 my-4 text-center"><em>"Tasks not found. Please remove filter or add new tasks"</em></p>
+                        }
+                    </div> 
                 </div>
                 :
             <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
