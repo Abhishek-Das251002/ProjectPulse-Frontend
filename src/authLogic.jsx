@@ -11,7 +11,7 @@ export const AuthenticateUser = ({currToken},page) => {
         async function checkLoginData(){
             if(currToken){
             try{
-                const response = await axios.get("http://localhost:3000/verifyUser",{
+                const response = await axios.get("https://project-pulse-backend-plum.vercel.app/verifyUser",{
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${currToken}`

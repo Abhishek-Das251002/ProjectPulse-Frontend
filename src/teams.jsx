@@ -5,7 +5,7 @@ import TeamModal from "./addTeam";
 import { useNavigate } from "react-router-dom";
 
 const Teams = () => {
-    const {data: teamData, error: errorData, refetch} = useFetch("http://localhost:3000/teams")
+    const {data: teamData, error: errorData, refetch} = useFetch("https://project-pulse-backend-plum.vercel.app/teams")
     const navigate = useNavigate()
 
     return (

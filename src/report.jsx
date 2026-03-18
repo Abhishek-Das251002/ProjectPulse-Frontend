@@ -14,11 +14,11 @@ defaults.plugins.title.color = "black";
 defaults.font.size = 16;
 
 const AllReports = () => {
-    const {data: pendingData, error: pendingError} = useFetch("http://localhost:3000/report/pending")
-    const {data: closedByTeam, error: closedByTeamError} = useFetch("http://localhost:3000/report/closed-tasks/teams")
-    const {data: closedByOwner, error: closedByOwnerError} = useFetch("http://localhost:3000/report/closed-tasks/owners")
-    const {data: closedByProject, error: closedByProjectError} = useFetch("http://localhost:3000/report/closed-tasks/projects")
-    const {data: closedLW, error: closedLwError} = useFetch("http://localhost:3000/report/last-week")
+    const {data: pendingData, error: pendingError} = useFetch("https://project-pulse-backend-plum.vercel.app/report/pending")
+    const {data: closedByTeam, error: closedByTeamError} = useFetch("https://project-pulse-backend-plum.vercel.app/report/closed-tasks/teams")
+    const {data: closedByOwner, error: closedByOwnerError} = useFetch("https://project-pulse-backend-plum.vercel.app/report/closed-tasks/owners")
+    const {data: closedByProject, error: closedByProjectError} = useFetch("https://project-pulse-backend-plum.vercel.app/report/closed-tasks/projects")
+    const {data: closedLW, error: closedLwError} = useFetch("https://project-pulse-backend-plum.vercel.app/report/last-week")
 
     return (
         <div className="row">

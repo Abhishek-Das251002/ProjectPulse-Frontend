@@ -10,9 +10,9 @@ import { useState, useEffect } from "react";
 const CurrProject = () => {
     const {id} = useParams()
 
-    const {data: projData, error: projError} = useFetch("http://localhost:3000/projects")
-    const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("http://localhost:3000/tasks")
-    const {data: userData, error: userError} = useFetch("http://localhost:3000/users")
+    const {data: projData, error: projError} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
+    const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tasks")
+    const {data: userData, error: userError} = useFetch("https://project-pulse-backend-plum.vercel.app/users")
 
     const selectedProj = projData?.filter(proj => proj._id === id)
     const projTasks = taskData?.filter(task => task.project && task.project._id === id)

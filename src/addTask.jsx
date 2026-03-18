@@ -17,9 +17,9 @@ export const TaskModal = ({id, onSuccess}) => {
     })
 
 
-    const {data: projData, error: projError} = useFetch("http://localhost:3000/projects")
-    const {data: teamData, error: teamError} = useFetch("http://localhost:3000/teams")
-    const {data: tagData, error: tagError} = useFetch("http://localhost:3000/tags")
+    const {data: projData, error: projError} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
+    const {data: teamData, error: teamError} = useFetch("https://project-pulse-backend-plum.vercel.app/teams")
+    const {data: tagData, error: tagError} = useFetch("https://project-pulse-backend-plum.vercel.app/tags")
 
     function handleChange(e){
         const {value, name} = e.target;
@@ -46,7 +46,7 @@ export const TaskModal = ({id, onSuccess}) => {
                 return;
             }
 
-            const response = await axios.post("http://localhost:3000/tasks", taskDetails,
+            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/tasks", taskDetails,
                 {
                     headers: {
                         "Content-Type": "application/json",

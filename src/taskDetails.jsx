@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const CurrTask = () => {
     const {id} = useParams()
 
-    const {data, error, refetch} = useFetch("http://localhost:3000/tasks")
+    const {data, error, refetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tasks")
     const selectedTask = data?.filter(task => task._id === id)
 
     function calRemainingDays(dueTime, creationTime){
@@ -28,7 +28,7 @@ const CurrTask = () => {
         try{    
             const token = localStorage.getItem("token")
             if(checked){
-                const response = await axios.post(`http://localhost:3000/tasks/${id}`, {status: "Completed"}, {
+                const response = await axios.post(`https://project-pulse-backend-plum.vercel.app/tasks/${id}`, {status: "Completed"}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -38,7 +38,7 @@ const CurrTask = () => {
                     refetch()
                 }
             }else{
-                const response = await axios.post(`http://localhost:3000/tasks/${id}`, {status: "In Progress"}, {
+                const response = await axios.post(`https://project-pulse-backend-plum.vercel.app/tasks/${id}`, {status: "In Progress"}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

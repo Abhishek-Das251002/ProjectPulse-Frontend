@@ -10,7 +10,7 @@ const CurrTeam = () => {
     const {id} = useParams()
     const navigate = useNavigate()
 
-    const {data: teamData, error: teamError, refetch} = useFetch("http://localhost:3000/teams")
+    const {data: teamData, error: teamError, refetch} = useFetch("https://project-pulse-backend-plum.vercel.app/teams")
     const selectedTeam = teamData?.filter(team => team._id === id)
 
     return (

@@ -10,8 +10,8 @@ import { toast } from "react-toastify";
 const Setting = () => {
     const {currUserInfo} = useContext(currUser)
 
-    const {data: projData, refetch: projRefetch} = useFetch("http://localhost:3000/projects")
-    const {data: taskData, refetch: taskRefetch} = useFetch("http://localhost:3000/tasks")
+    const {data: projData, refetch: projRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
+    const {data: taskData, refetch: taskRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tasks")
 
     const [currToken, setCurrToken] = useState(localStorage.getItem("token"))
     const navigate = useNavigate()
@@ -33,7 +33,7 @@ const Setting = () => {
         try{
             const token = localStorage.getItem("token")
 
-            const response = await axios.delete(`http://localhost:3000/tasks/${taskId}`,{
+            const response = await axios.delete(`https://project-pulse-backend-plum.vercel.app/tasks/${taskId}`,{
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -51,7 +51,7 @@ const Setting = () => {
         try{
             const token = localStorage.getItem("token")
 
-            const response = await axios.delete(`http://localhost:3000/projects/${projId}`,{
+            const response = await axios.delete(`https://project-pulse-backend-plum.vercel.app/projects/${projId}`,{
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -10,8 +10,8 @@ import { use, useEffect, useState } from "react";
 
 const Dashboard = () => {
 
-    const {data, error, refetch: projectRefetch} = useFetch("http://localhost:3000/projects")
-    const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("http://localhost:3000/tasks")
+    const {data, error, refetch: projectRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
+    const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tasks")
 
     const navigate = useNavigate()
 

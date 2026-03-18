@@ -25,7 +25,7 @@ export const MemberModal = ({teamId, onSuccess}) => {
 
             const token = localStorage.getItem("token")
             
-            const response = await axios.post("http://localhost:3000/users", member,
+            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/users", member,
                 {
                     headers:{
                         Authorization: `Bearer ${token}`
@@ -34,7 +34,7 @@ export const MemberModal = ({teamId, onSuccess}) => {
             )
             if(response){
                 try{
-                    const addToTeam = await axios.post(`http://localhost:3000/teams/${teamId}`, response.data.saveUser,{
+                    const addToTeam = await axios.post(`https://project-pulse-backend-plum.vercel.app/teams/${teamId}`, response.data.saveUser,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

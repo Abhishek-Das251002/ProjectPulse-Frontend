@@ -14,7 +14,7 @@ export const ProjectModal = ({onSuccess}) => {
         try{
             const token = localStorage.getItem("token")
 
-            const response = await axios.post("http://localhost:3000/projects",projInfo, 
+            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/projects",projInfo, 
                 {headers: {
                     Authorization: `Bearer ${token}`
                 }}
