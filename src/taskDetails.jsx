@@ -57,52 +57,54 @@ const CurrTask = () => {
     return (
         <div className="row">
             <Navbar page={"task"}/>
-            {data 
-            ?
             <div className="col-10">
-                <div style={{margin: "2rem 2rem"}}>
-                    {selectedTask?.map(task => (
-                        <div>
-                            <h3>{task.name}</h3>
-                        </div> 
-                    ))}
-                </div>
-                <div className="body">
-                    <div className="taskTable">
-                        <table className="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">PROJECT</th>
-                            <th scope="col">TEAM</th>
-                            <th scope="col">TAGS</th>
-                            <th scope="col">DUE ON</th>
-                            <th scope="col">TIME REMAINING</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">MARK COMPLETE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {selectedTask?.map(task => (
+                {data 
+                ?
+                <div>
+                    <div style={{margin: "2rem 2rem"}}>
+                        {selectedTask?.map(task => (
+                            <div>
+                                <h3>{task.name}</h3>
+                            </div> 
+                        ))}
+                    </div>
+                    <div className="body">
+                        <div className="taskTable">
+                            <table className="table">
+                            <thead>
                                 <tr>
-                                <td>{task.project ? task.project.name : "Unknown"}</td>
-                                <td>{task.team.name}</td>
-                                <td>{(task.tags.map(tag => tag.name).join(", "))}</td>
-                                <td>{CalcDueDate(task.timeToComplete, task.createdAt)}</td>
-                                <td>{calRemainingDays(task.timeToComplete, task.createdAt) > 0 ? `${calRemainingDays(task.timeToComplete, task.createdAt)} Days` : "Due Date Passed"}</td>
-                                <td>{task.status}</td>
-                                <td>
-                                    <input type="checkbox" checked={task.status === "Completed" ? true : false} onChange={handleStatus}/> Mark as complete
-                                </td>
+                                <th scope="col">PROJECT</th>
+                                <th scope="col">TEAM</th>
+                                <th scope="col">TAGS</th>
+                                <th scope="col">DUE ON</th>
+                                <th scope="col">TIME REMAINING</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">MARK COMPLETE</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                                {selectedTask?.map(task => (
+                                    <tr>
+                                    <td>{task.project ? task.project.name : "Unknown"}</td>
+                                    <td>{task.team.name}</td>
+                                    <td>{(task.tags.map(tag => tag.name).join(", "))}</td>
+                                    <td>{CalcDueDate(task.timeToComplete, task.createdAt)}</td>
+                                    <td>{calRemainingDays(task.timeToComplete, task.createdAt) > 0 ? `${calRemainingDays(task.timeToComplete, task.createdAt)} Days` : "Due Date Passed"}</td>
+                                    <td>{task.status}</td>
+                                    <td>
+                                        <input type="checkbox" checked={task.status === "Completed" ? true : false} onChange={handleStatus}/> Mark as complete
+                                    </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            :
-            <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
-            }
+                :
+                <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
+                }
+            </div>    
         </div>
     )
 }

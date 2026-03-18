@@ -69,68 +69,70 @@ const Setting = () => {
         <div>
             <div className="row">
                 <Navbar page={"setting"}/>
-                {taskData && projData
-                ?
                 <div className="col-10">
-                    <div style={{margin: "2rem 2rem"}}>
-                        <h2>User Profile</h2>
-                    </div>
-                    <div className="body fs-5">
-                        <p><strong>User Name: </strong>{currUserInfo.name}</p>
-                        <p><strong>User Email: </strong>{currUserInfo.email}</p>
-                        <button style={{background: "#2F3E8F", color: "#fff"}} className="btn btn px-2 py-1" onClick={handleLogout}>Log Out</button>
-                        <h2 className="my-4">Delete Projects & Tasks</h2>    
-                        <div>
-                            <div className="taskTable" style={{margin: "2rem 5rem"}}> 
-                                <table className="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Project Name</th>
-                                    <th scope="col">Delete project</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {projData?.map(proj => (
-                                        <tr>
-                                        <td>{proj.name}</td>
-                                        <td>
-                                            <div className="d-flex justify-content-center align-items-center">
-                                                <button className="btn btn-danger btn-sm px-3 py-2" onClick={() => handleProjDelete(proj._id)}>Delete</button>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                                </table>
-                            </div>
-                            <div className="taskTable" style={{margin: "2rem 5rem"}}> 
-                                <table className="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Task Name</th>
-                                    <th scope="col">Delete Task</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {taskData?.map(task => (
-                                        <tr>
-                                        <td>{task.name}</td>
-                                        <td>
-                                            <div className="d-flex justify-content-center align-items-center">
-                                                <button className="btn btn-danger btn-sm px-3 py-2" onClick={() => handleTaskDelete(task._id)}>Delete</button>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                                </table>
-                            </div>
+                    {taskData && projData
+                    ?
+                    <div>
+                        <div style={{margin: "2rem 2rem"}}>
+                            <h2>User Profile</h2>
                         </div>
-                    </div>    
-                </div>
-                :
-                <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
-                }     
+                        <div className="body fs-5">
+                            <p><strong>User Name: </strong>{currUserInfo.name}</p>
+                            <p><strong>User Email: </strong>{currUserInfo.email}</p>
+                            <button style={{background: "#2F3E8F", color: "#fff"}} className="btn btn px-2 py-1" onClick={handleLogout}>Log Out</button>
+                            <h2 className="my-4">Delete Projects & Tasks</h2>    
+                            <div>
+                                <div className="taskTable" style={{margin: "2rem 5rem"}}> 
+                                    <table className="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Project Name</th>
+                                        <th scope="col">Delete project</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {projData?.map(proj => (
+                                            <tr>
+                                            <td>{proj.name}</td>
+                                            <td>
+                                                <div className="d-flex justify-content-center align-items-center">
+                                                    <button className="btn btn-danger btn-sm px-3 py-2" onClick={() => handleProjDelete(proj._id)}>Delete</button>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <div className="taskTable" style={{margin: "2rem 5rem"}}> 
+                                    <table className="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Task Name</th>
+                                        <th scope="col">Delete Task</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {taskData?.map(task => (
+                                            <tr>
+                                            <td>{task.name}</td>
+                                            <td>
+                                                <div className="d-flex justify-content-center align-items-center">
+                                                    <button className="btn btn-danger btn-sm px-3 py-2" onClick={() => handleTaskDelete(task._id)}>Delete</button>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>  
+                    :
+                    <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
+                    }  
+                </div>    
             </div>
         </div>
         

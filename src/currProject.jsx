@@ -68,90 +68,92 @@ const CurrProject = () => {
         <div className="row">
             <TaskModal id={id} onSuccess={taskRefetch}/>
             <Navbar page={"project"}/>
-            {projData && taskData && userData
-            ?
             <div className="col-10">
-                <div style={{margin: "2rem 2rem"}}>
-                    {selectedProj?.map(proj => (
-                        <div>
-                            <h3>{proj.name}</h3>
-                            <div className="text-secondary">
-                                {proj.description}
-                            </div>
-                        </div> 
-                    ))}
-                </div>
-                {filterData.length !== 0
+                {projData && taskData && userData
                 ?
-                <div className="body">
-                    <div className="filterOptions mb-3">
-                        <div>
-                            <div className="mx-3 fs-5">
-                                Sort by :
-                            </div>
-                            <div className="priorityBtn">
-                                <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="priority" value="LtH" onClick={(e) => handleFilter(e)}>
-                                    Priority Low-High
-                                </button>
-                                <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="priority" value="HtL" onClick={(e) => handleFilter(e)}>
-                                    Priority High-Low
-                                </button>
-                                <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="date" value={"NtO"} onClick={(e) => handleFilter(e)}>
-                                    Newest First
-                                </button>
-                                <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="date" value={"OtN"} onClick={(e) => handleFilter(e)}>
-                                    Oldest First
-                                </button>
-                            </div>
-                        </div>
-                        <div>
+                <div>
+                    <div style={{margin: "2rem 2rem"}}>
+                        {selectedProj?.map(proj => (
                             <div>
-                                <select name="owner" className="mx-3 form-select" value={filterValue.owner} onChange={handleFilter} >
-                                    <option value="">Filter By Owner</option>
-                                    {userData?.map(user => (
-                                        <option value={user._id}>{user.name}</option>
-                                    ))}
-                                </select>
+                                <h3>{proj.name}</h3>
+                                <div className="text-secondary">
+                                    {proj.description}
+                                </div>
+                            </div> 
+                        ))}
+                    </div>
+                    {filterData.length !== 0
+                    ?
+                    <div className="body">
+                        <div className="filterOptions mb-3">
+                            <div>
+                                <div className="mx-3 fs-5">
+                                    Sort by :
+                                </div>
+                                <div className="priorityBtn">
+                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="priority" value="LtH" onClick={(e) => handleFilter(e)}>
+                                        Priority Low-High
+                                    </button>
+                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="priority" value="HtL" onClick={(e) => handleFilter(e)}>
+                                        Priority High-Low
+                                    </button>
+                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="date" value={"NtO"} onClick={(e) => handleFilter(e)}>
+                                        Newest First
+                                    </button>
+                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="date" value={"OtN"} onClick={(e) => handleFilter(e)}>
+                                        Oldest First
+                                    </button>
+                                </div>
                             </div>
-                            <div className="d-flex justify-content-center align-items-center">
-                                <button style={{background: "#2F3E8F", color: "#fff"}} className="btn btn px-2 py-1" data-bs-toggle="modal" data-bs-target="#taskModal"><PlusIcon size={20}/> New Task</button>
+                            <div>
+                                <div>
+                                    <select name="owner" className="mx-3 form-select" value={filterValue.owner} onChange={handleFilter} >
+                                        <option value="">Filter By Owner</option>
+                                        {userData?.map(user => (
+                                            <option value={user._id}>{user.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <button style={{background: "#2F3E8F", color: "#fff"}} className="btn btn px-2 py-1" data-bs-toggle="modal" data-bs-target="#taskModal"><PlusIcon size={20}/> New Task</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="taskTable">
-                        <table className="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">TASKS</th>
-                            <th scope="col">OWNER</th>
-                            <th scope="col">PRIORITY</th>
-                            <th scope="col">DUE ON</th>
-                            <th scope="col">STATUS</th>
-                            <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filterData?.map(task => (
+                        <div className="taskTable">
+                            <table className="table">
+                            <thead>
                                 <tr>
-                                <td>{task.name}</td>
-                                <td>{task.owners.map(owner => owner.name).join(", ")}</td>
-                                <td>{task.priority}</td>
-                                <td>{CalcDueDate(task.timeToComplete, task.createdAt)}</td>
-                                <td>{task.status}</td>
-                                <td><ArrowRightIcon className="taskArrow" onClick={() => navigate(`/projects/task/${task._id}`)}/></td>
+                                <th scope="col">TASKS</th>
+                                <th scope="col">OWNER</th>
+                                <th scope="col">PRIORITY</th>
+                                <th scope="col">DUE ON</th>
+                                <th scope="col">STATUS</th>
+                                <th></th>
                                 </tr>
-                            ))}
-                        </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                                {filterData?.map(task => (
+                                    <tr>
+                                    <td>{task.name}</td>
+                                    <td>{task.owners.map(owner => owner.name).join(", ")}</td>
+                                    <td>{task.priority}</td>
+                                    <td>{CalcDueDate(task.timeToComplete, task.createdAt)}</td>
+                                    <td>{task.status}</td>
+                                    <td><ArrowRightIcon className="taskArrow" onClick={() => navigate(`/projects/task/${task._id}`)}/></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            </table>
+                        </div>
                     </div>
+                    :
+                    <p className="fs-5 my-4 text-center"><em>"Tasks are not added to this project yet."</em></p>
+                    } 
                 </div>
                 :
-                <p className="fs-5 my-4 text-center"><em>"Tasks are not added to this project yet."</em></p>
-                }    
-            </div>
-            :
             <p className="text-center text-secondary fs-5 mt-4">Loading...</p>
-            } 
+            }   
+            </div> 
         </div>
     )
 }
