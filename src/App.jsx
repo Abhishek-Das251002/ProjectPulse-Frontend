@@ -13,47 +13,17 @@ const App = () => {
   })
   const [currToken,setCurrToken] = useState(localStorage.getItem("token"))
   const [loginMsg, setLoginMsg] = useState(<p className="text-secondary fs-5">Please enter your details.</p>)
-  // const {currUserInfo, setCurrUserInfo} = useContext(currUser)
+ 
   const navigate = useNavigate()
   const location = useLocation()
 
   AuthenticateUser({currToken}, "/dashboard")
   
-
-
-//   useEffect(() => {
-//   async function checkLoginData(){
-//     if(currToken){
-//       try{
-//         const response = await axios.get("http://localhost:3000/verifyUser",{
-//           headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': `Bearer ${currToken}`
-//           }
-//         })
-
-//         if(response){
-//           console.log(response)
-//           setCurrUserInfo({email: response.data.email, name: response.data.name})
-//           navigate("/dashboard")  
-//         }
-
-//       }catch(error){
-//         console.log(error)
-//       }
-//     }
-//   }
-
-//   checkLoginData()
-
-// }, [currToken])
-
-
-    useEffect(() => {
-      if(location.state?.message){
-        setLoginMsg(<p className="text-danger fs-5">{location.state.message}</p>)
-      }
-    },[location])
+  useEffect(() => {
+    if(location.state?.message){
+      setLoginMsg(<p className="text-danger fs-5">{location.state.message}</p>)
+    }
+  },[location])
 
   function handleSubmit(e){
     e.preventDefault()

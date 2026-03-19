@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetch } from "./useFetch";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -16,11 +16,12 @@ export const TaskModal = ({id, onSuccess}) => {
         priority: ""
     })
 
+    const [newTag, setNewTag] = useState("")
 
-    const {data: projData, error: projError} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
+    const {data: projData, error: projError, refetch: projRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
     const {data: teamData, error: teamError} = useFetch("https://project-pulse-backend-plum.vercel.app/teams")
-    const {data: tagData, error: tagError} = useFetch("https://project-pulse-backend-plum.vercel.app/tags")
-
+    const {data: tagData, error: tagError, refetch: tagRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tags")
+    
     function handleChange(e){
         const {value, name} = e.target;
 
@@ -82,6 +83,35 @@ export const TaskModal = ({id, onSuccess}) => {
             return chooseProj.name
         }
     }
+
+    function handleNewTag(e){
+        const {value} = e.target;
+        setNewTag(value)
+    }
+
+    async function addNewTag(){
+        try{
+            const token = localStorage.getItem("token")
+
+            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/tags",{name: newTag},{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if(response){
+                toast.success("New Tag Added.")
+                setNewTag("")
+                tagRefetch()    
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        projRefetch()
+    },[projData])
+
 
     return (
         <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,7 +178,6 @@ export const TaskModal = ({id, onSuccess}) => {
                             <option value="To Do">To Do</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Completed">Completed</option>
-                            <option value="Blocked">Blocked</option>
                         </select>
                     </div>
                     <div>
@@ -171,6 +200,17 @@ export const TaskModal = ({id, onSuccess}) => {
                             ))
                         }  
                         </div>     
+                    </div>
+                    <div>
+                        <label>Add New Tag</label>
+                        <div className="row">
+                            <div className="col-9">
+                                <input type="text" placeholder="Enter Tag Name" className="form-control" value={newTag} onChange={handleNewTag}/>
+                            </div>
+                            <div className="col-3">
+                                <button type="button" class="btn btn-primary" style={{background: "#2F3E8F", color: "#fff"}} onClick={() => addNewTag()}>Add Tag</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

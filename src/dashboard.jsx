@@ -67,8 +67,10 @@ const Dashboard = () => {
         if(!filterValue){
             setFilterData(taskData)
         }
-        else if(filterValue !== "Completed"){
-            setFilterData(taskData?.filter(task => task.status !== "Completed"))
+        else if(filterValue === "To Do"){
+            setFilterData(taskData?.filter(task => task.status === "To Do"))
+        }else if(filterValue === "In Progress"){
+            setFilterData(taskData?.filter(task => task.status === "In Progress"))
         }else{
             setFilterData(taskData?.filter(task => task.status === "Completed"))
         }
@@ -132,6 +134,7 @@ const Dashboard = () => {
                         <div>
                         <select value={filterValue} onChange={handleFilter} className="form-select ms-3">
                             <option value="">Filter By Status</option>
+                            <option value="To Do">To Do</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Completed">Completed</option>
                         </select>
