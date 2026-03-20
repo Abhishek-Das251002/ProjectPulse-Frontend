@@ -59,6 +59,7 @@ const Setting = () => {
             if(response){
                 toast.warning("Project Deleted!");
                 projRefetch()
+                taskRefetch()
             }
         }catch(error){
             console.log(error)
