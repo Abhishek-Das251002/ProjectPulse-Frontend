@@ -2,8 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import checkEmail from "./validateEmail"
 import { toast } from "react-toastify";
+import { useFetch } from "./useFetch";
 
 export const MemberModal = ({teamId, onSuccess}) => {
+
+    const {data: signUpData} = useFetch("https://project-pulse-backend-plum.vercel.app/allUsers")
 
     const [member, setMember] = useState({
         name: "",
@@ -25,33 +28,38 @@ export const MemberModal = ({teamId, onSuccess}) => {
 
             const token = localStorage.getItem("token")
             
-            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/users", member,
-                {
-                    headers:{
-                        Authorization: `Bearer ${token}`
+            if(signUpData?.filter(signedMember => signedMember.email === member.email).length !== 0){
+                const response = await axios.post("https://project-pulse-backend-plum.vercel.app/users", member,
+                    {
+                        headers:{
+                            Authorization: `Bearer ${token}`
+                        }
                     }
-                }
-            )
-            if(response){
-                try{
-                    const addToTeam = await axios.post(`https://project-pulse-backend-plum.vercel.app/teams/${teamId}`, response.data.saveUser,{
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                if(addToTeam){
-                    setMember({
-                        name: "",
-                        email: ""
+                )
+                if(response){
+                    try{
+                        const addToTeam = await axios.post(`https://project-pulse-backend-plum.vercel.app/teams/${teamId}`, response.data.saveUser,{
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
                     })
-                    onSuccess()
-                    toast.success("Member added successfully.")
+                    if(addToTeam){
+                        setMember({
+                            name: "",
+                            email: ""
+                        })
+                        onSuccess()
+                        toast.success("Member added successfully.")
+                    }
+                    }catch(error){
+                        console.log(error)
+                        toast.error("Error occured while adding member!")
+                    }
                 }
-                }catch(error){
-                    console.log(error)
-                    toast.error("Error occured while adding member!")
-                }
-            }
+            }else{
+                toast.error("Member is unauthorized, you can only add authorized members")
+                return
+            }   
         }catch(error){
             console.log(error)
             toast.error("Error occured while adding member!")

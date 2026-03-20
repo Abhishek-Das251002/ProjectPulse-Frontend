@@ -1,10 +1,13 @@
 import { useState } from "react";
 import checkEmail from "./validateEmail";
 import { toast } from 'react-toastify';
+import { useFetch } from "./useFetch";
 import axios from "axios";
 
 export const TeamModal = ({onSuccess}) => {
 
+     const {data: signUpData} = useFetch("https://project-pulse-backend-plum.vercel.app/allUsers")
+    
     const [teamName, setTeamName] = useState("")
 
     const [allMembers, setMembers] = useState([
@@ -41,6 +44,14 @@ export const TeamModal = ({onSuccess}) => {
         }
     }
 
+    function checkMemberValidity(members){
+        for(let member of members){
+            if(signUpData.filter(validMember => validMember.email === member.email).length === 0){
+                return false
+            }
+        }
+        return true  
+    }
 
     async function handleSubmit(e){
         e.preventDefault()  
@@ -70,7 +81,8 @@ export const TeamModal = ({onSuccess}) => {
         try{    
             const token = localStorage.getItem("token")
 
-            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/users", validMembers,
+        if((checkMemberValidity(validMembers))){
+                const response = await axios.post("https://project-pulse-backend-plum.vercel.app/users", validMembers,
                 {
                     headers:{
                         Authorization: `Bearer ${token}`
@@ -101,7 +113,10 @@ export const TeamModal = ({onSuccess}) => {
                     console.log(error)
                     toast.error("An error occured while adding team")
                 }
-            }        
+            } 
+        }else{
+            toast.error("Unauthorized member Details found, you can only add authorized members")
+        }       
         }catch(error){
             console.log(error)
             toast.error("An error occured while adding team")
