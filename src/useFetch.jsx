@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 export const useFetch = (url) => {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+
     const navigate = useNavigate()
 
         const fetchData = async () => {
@@ -23,6 +25,7 @@ export const useFetch = (url) => {
             })
 
             setData(response.data)
+            setLoading(false)
         }
 
         useEffect(() => {
@@ -36,5 +39,5 @@ export const useFetch = (url) => {
             })
         },[url])
 
-    return { data, error, refetch: fetchData}
+    return { data, error, refetch: fetchData,loading}
 }

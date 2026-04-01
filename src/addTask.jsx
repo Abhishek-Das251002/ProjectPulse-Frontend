@@ -18,9 +18,9 @@ export const TaskModal = ({id, onSuccess}) => {
 
     const [newTag, setNewTag] = useState("")
 
-    const {data: projData, error: projError, refetch: projRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
-    const {data: teamData, error: teamError} = useFetch("https://project-pulse-backend-plum.vercel.app/teams")
-    const {data: tagData, error: tagError, refetch: tagRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tags")
+    const {data: projData, error: projError, refetch: projRefetch} = useFetch("https://project-pulse-backend-nine.vercel.app/projects")
+    const {data: teamData, error: teamError} = useFetch("https://project-pulse-backend-nine.vercel.app/teams")
+    const {data: tagData, error: tagError, refetch: tagRefetch} = useFetch("https://project-pulse-backend-nine.vercel.app/tags")
     
     function handleChange(e){
         const {value, name} = e.target;
@@ -47,7 +47,7 @@ export const TaskModal = ({id, onSuccess}) => {
                 return;
             }
 
-            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/tasks", taskDetails,
+            const response = await axios.post("https://project-pulse-backend-nine.vercel.app/tasks", taskDetails,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export const TaskModal = ({id, onSuccess}) => {
         try{
             const token = localStorage.getItem("token")
 
-            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/tags",{name: newTag},{
+            const response = await axios.post("https://project-pulse-backend-nine.vercel.app/tags",{name: newTag},{
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -204,10 +204,10 @@ export const TaskModal = ({id, onSuccess}) => {
                     <div>
                         <label>Add New Tag</label>
                         <div className="row">
-                            <div className="col-9">
+                            <div className="col-lg-9 col-8">
                                 <input type="text" placeholder="Enter Tag Name" className="form-control" value={newTag} onChange={handleNewTag}/>
                             </div>
-                            <div className="col-3">
+                            <div className="col-lg-3 col-4">
                                 <button type="button" class="btn btn-primary" style={{background: "#2F3E8F", color: "#fff"}} onClick={() => addNewTag()}>Add Tag</button>
                             </div>
                         </div>

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const CurrTask = () => {
     const {id} = useParams()
 
-    const {data, error, refetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tasks")
+    const {data, error, refetch} = useFetch("https://project-pulse-backend-nine.vercel.app/tasks")
     const selectedTask = data?.filter(task => task._id === id)
 
     function calRemainingDays(dueTime, creationTime){
@@ -28,7 +28,7 @@ const CurrTask = () => {
         try{    
             const token = localStorage.getItem("token")
             if(checked){
-                const response = await axios.post(`https://project-pulse-backend-plum.vercel.app/tasks/${id}`, {status: "Completed"}, {
+                const response = await axios.post(`https://project-pulse-backend-nine.vercel.app/tasks/${id}`, {status: "Completed"}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -38,7 +38,7 @@ const CurrTask = () => {
                     refetch()
                 }
             }else{
-                const response = await axios.post(`https://project-pulse-backend-plum.vercel.app/tasks/${id}`, {status: "In Progress"}, {
+                const response = await axios.post(`https://project-pulse-backend-nine.vercel.app/tasks/${id}`, {status: "In Progress"}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -55,22 +55,24 @@ const CurrTask = () => {
 
 
     return (
-        <div className="row">
-            <Navbar page={"task"}/>
-            <div className="col-10">
+        <div className="dbFullScreen">
+            <div className="fixToTop">
+                <Navbar page={"task"}/>
+            </div>
+            <div className="col-lg-9 col-xl-10 col-12 container">
                 {data 
                 ?
                 <div>
-                    <div style={{margin: "2rem 2rem"}}>
+                    <div className="currTaskHeading">
                         {selectedTask?.map(task => (
                             <div>
                                 <h3>{task.name}</h3>
                             </div> 
                         ))}
                     </div>
-                    <div className="body">
-                        <div className="taskTable">
-                            <table className="table">
+                    <div>
+                        <div className="taskTable currTaskTable">
+                            <table className="myTaskTable">
                             <thead>
                                 <tr>
                                 <th scope="col">PROJECT</th>

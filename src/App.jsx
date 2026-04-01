@@ -27,7 +27,7 @@ const App = () => {
 
   function handleSubmit(e){
     e.preventDefault()
-    axios.post("https://project-pulse-backend-plum.vercel.app/admin/login",logInfo)
+    axios.post("https://project-pulse-backend-nine.vercel.app/admin/login",logInfo)
     .then(res => {
       localStorage.setItem("token", res.data.token)
       setCurrToken(localStorage.getItem("token"))

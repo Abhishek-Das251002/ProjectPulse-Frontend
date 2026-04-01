@@ -10,18 +10,20 @@ const CurrTeam = () => {
     const {id} = useParams()
     const navigate = useNavigate()
 
-    const {data: teamData, error: teamError, refetch} = useFetch("https://project-pulse-backend-plum.vercel.app/teams")
+    const {data: teamData, error: teamError, refetch} = useFetch("https://project-pulse-backend-nine.vercel.app/teams")
     const selectedTeam = teamData?.filter(team => team._id === id)
 
     return (
-        <div className="row">
-            <Navbar page={"teamDetail"}/>
+        <div className="dbFullScreen">
             <MemberModal teamId={id}  onSuccess={refetch}/>
-            <div className="col-10">
+            <div className="fixToTop">
+                <Navbar page={"teamDetail"}/>
+            </div>
+            <div className="col-lg-9 col-xl-10 col-12">
                 {teamData
                 ?
-                <div>
-                    <div className="body">
+                <div className="ms-sm-5 ms-3">
+                    <div>
                     {selectedTeam?.map(team => (
                         <div>
                             <div style={{color: "#2F3E8F",display: "flex", marginTop: "1.5rem", fontSize: "1.3rem", alignItems: "center", fontWeight: "bolder", cursor: "pointer"}} onClick={() => navigate(-1)}>

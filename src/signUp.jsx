@@ -41,7 +41,7 @@ export const SignUp = () => {
         }
 
         if(isValidEmail && isValidPass){
-            axios.post("https://project-pulse-backend-plum.vercel.app/allUsers", userInfo)
+            axios.post("https://project-pulse-backend-nine.vercel.app/allUsers", userInfo)
             .then(res => {
                 console.log('user added', res.data)
                 e.target.reset()

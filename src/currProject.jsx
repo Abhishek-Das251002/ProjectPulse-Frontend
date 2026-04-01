@@ -10,9 +10,9 @@ import { useState, useEffect } from "react";
 const CurrProject = () => {
     const {id} = useParams()
 
-    const {data: projData, error: projError} = useFetch("https://project-pulse-backend-plum.vercel.app/projects")
-    const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("https://project-pulse-backend-plum.vercel.app/tasks")
-    const {data: userData, error: userError} = useFetch("https://project-pulse-backend-plum.vercel.app/users")
+    const {data: projData, error: projError} = useFetch("https://project-pulse-backend-nine.vercel.app/projects")
+    const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("https://project-pulse-backend-nine.vercel.app/tasks")
+    const {data: userData, error: userError} = useFetch("https://project-pulse-backend-nine.vercel.app/users")
 
     const selectedProj = projData?.filter(proj => proj._id === id)
     const projTasks = taskData?.filter(task => task.project && task.project._id === id)
@@ -63,64 +63,66 @@ const CurrProject = () => {
         }
     },[filterValue,taskData])
 
-    
+
     return (
-        <div className="row">
+        <div className="dbFullScreen">
             <TaskModal id={id} onSuccess={taskRefetch}/>
-            <Navbar page={"project"}/>
-            <div className="col-10">
+            <div className="fixToTop">
+                <Navbar page={"project"}/>
+            </div>
+            <div className="col-lg-9 col-xl-10 col-12 container px-xl-5">
                 {projData && taskData && userData
                 ?
                 <div>
-                    <div style={{margin: "2rem 2rem"}}>
+                    <div>
                         {selectedProj?.map(proj => (
                             <div>
-                                <h3>{proj.name}</h3>
-                                <div className="text-secondary">
+                                <h3 className="my-2">{proj.name}</h3>
+                                <div className="text-secondary" style={{textAlign: "justify"}}>
                                     {proj.description}
                                 </div>
                             </div> 
                         ))}
                     </div>
-                    <div className="body">
-                        <div className="filterOptions mb-3">
-                            <div>
-                                <div className="mx-3 fs-5">
+                    <div>
+                        <div className="filterOptions my-3">
+                            <div className="sortOptions mb-md-3">
+                                <div className="me-3 fs-5 d-flex justify-content-md-center align-items-center">
                                     Sort by :
                                 </div>
-                                <div className="priorityBtn">
-                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="priority" value="LtH" onClick={(e) => handleFilter(e)}>
+                                <div className="priorityBtn mb-3 mb-md-0">
+                                    <button className="rounded-pill filterBtn my-2 py-1 px-3" name="priority" value="LtH" onClick={(e) => handleFilter(e)}>
                                         Priority Low-High
                                     </button>
-                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="priority" value="HtL" onClick={(e) => handleFilter(e)}>
+                                    <button className="rounded-pill filterBtn my-2 py-1 px-3" name="priority" value="HtL" onClick={(e) => handleFilter(e)}>
                                         Priority High-Low
                                     </button>
-                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="date" value={"NtO"} onClick={(e) => handleFilter(e)}>
+                                    <button className="rounded-pill filterBtn my-2 py-1 px-3" name="date" value={"NtO"} onClick={(e) => handleFilter(e)}>
                                         Newest First
                                     </button>
-                                    <button className="rounded-pill filterBtn mx-1 px-3 py-1" name="date" value={"OtN"} onClick={(e) => handleFilter(e)}>
+                                    <button className="rounded-pill filterBtn my-2 py-1 px-3" name="date" value={"OtN"} onClick={(e) => handleFilter(e)}>
                                         Oldest First
                                     </button>
                                 </div>
                             </div>
-                            <div>
-                                <div>
-                                    <select name="owner" className="mx-3 form-select" value={filterValue.owner} onChange={handleFilter} >
+                            <div className="row otherOptions mx-1 mx-md-0">
+                                <div className="col-6">
+                                    <select name="owner" className="form-select" value={filterValue.owner} onChange={handleFilter} >
                                         <option value="">Filter By Owner</option>
                                         {userData?.map(user => (
                                             <option value={user._id}>{user.name}</option>
                                         ))}
                                     </select>
                                 </div>
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <button style={{background: "#2F3E8F", color: "#fff"}} className="btn btn px-2 py-1" data-bs-toggle="modal" data-bs-target="#taskModal"><PlusIcon size={20}/> New Task</button>
+                                <div className="col-6">
+                                    <button style={{background: "#2F3E8F", color: "#fff"}} className="btn btn w-100" data-bs-toggle="modal" data-bs-target="#taskModal"><PlusIcon size={20}/> New Task</button>
                                 </div>
                             </div>
                         </div>
                         {filterData.length !== 0
                         ?
                         <div className="taskTable">
-                            <table className="table">
+                            <table className="myProjTable">
                             <thead>
                                 <tr>
                                 <th scope="col">TASKS</th>

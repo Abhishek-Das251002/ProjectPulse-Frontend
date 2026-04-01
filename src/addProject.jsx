@@ -14,7 +14,7 @@ export const ProjectModal = ({onSuccess}) => {
         try{
             const token = localStorage.getItem("token")
 
-            const response = await axios.post("https://project-pulse-backend-plum.vercel.app/projects",projInfo, 
+            const response = await axios.post("https://project-pulse-backend-nine.vercel.app/projects",projInfo, 
                 {headers: {
                     Authorization: `Bearer ${token}`
                 }}
@@ -44,9 +44,9 @@ export const ProjectModal = ({onSuccess}) => {
             </div>
             <form onSubmit={(e) => handleProject(e)}>
                 <div class="modal-body">
-                    <label className="fs-5">Project Name</label><br />
+                    <label>Project Name</label><br />
                     <input type="text" value={projInfo.name} onChange={(e) => setProjInfo({...projInfo,name: e.target.value})} className="form-control mt-2" placeholder="Enter Project Name" required/><br />
-                    <label className="fs-5">Project Description</label><br />
+                    <label>Project Description</label><br />
                     <textarea type="text" value={projInfo.description} onChange={(e) => setProjInfo({...projInfo,description: e.target.value})} className="form-control mt-2" placeholder="Enter Project Description"></textarea>
                 </div>
                 <div class="modal-footer">

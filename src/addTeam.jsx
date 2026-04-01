@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const TeamModal = ({onSuccess}) => {
 
-     const {data: signUpData} = useFetch("https://project-pulse-backend-plum.vercel.app/allUsers")
+     const {data: signUpData} = useFetch("https://project-pulse-backend-nine.vercel.app/allUsers")
     
     const [teamName, setTeamName] = useState("")
 
@@ -82,7 +82,7 @@ export const TeamModal = ({onSuccess}) => {
             const token = localStorage.getItem("token")
 
         if((checkMemberValidity(validMembers))){
-                const response = await axios.post("https://project-pulse-backend-plum.vercel.app/users", validMembers,
+                const response = await axios.post("https://project-pulse-backend-nine.vercel.app/users", validMembers,
                 {
                     headers:{
                         Authorization: `Bearer ${token}`
@@ -99,7 +99,7 @@ export const TeamModal = ({onSuccess}) => {
                 }
 
                 try{
-                    const addToTeam = await axios.post("https://project-pulse-backend-plum.vercel.app/teams", newTeam,{
+                    const addToTeam = await axios.post("https://project-pulse-backend-nine.vercel.app/teams", newTeam,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
