@@ -15,7 +15,7 @@ export const Navbar = ({page}) => {
             <div className="d-lg-none" style={{background: "#F4F6F9", padding: "5px 0px"}}>
                 <nav class="navbar navbar-expand-lg container">
                     <div class="container-fluid">
-                        <NavLink to="/dashboard" style={{color: "#2F3E8F", fontWeight: "bolder", textDecoration: "none"}}>ProjectPulse</NavLink>
+                        <NavLink to="/dashboard" style={{color: "#2F3E8F", fontWeight: "bolder", textDecoration: "none", fontSize: "1.5rem"}}>ProjectPulse</NavLink>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
