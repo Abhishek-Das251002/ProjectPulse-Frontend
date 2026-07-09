@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';   
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { currUser } from "./userContext";
-import AuthenticateUser from "./authLogic";
+import useAuthenticateUser from "./authLogic";
 
 const App = () => {
   const [logInfo, setLogInfo] = useState({
@@ -17,7 +17,7 @@ const App = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  AuthenticateUser({currToken}, "/dashboard")
+  useAuthenticateUser(currToken, "/dashboard")
   
   useEffect(() => {
     if(location.state?.message){
