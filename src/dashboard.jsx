@@ -46,10 +46,10 @@ const Dashboard = () => {
     //     return projStatus
     // }
 
-    // function handleSearch(e){
-    //     const {value} = e.target;
-    //     setSearchValue(value.toLowerCase())
-    // }
+    function handleSearch(e){
+        const {value} = e.target;
+        setSearchValue(value.toLowerCase())
+    }
 
     // useEffect(() => {
     //     if(!projectFilterValue){
