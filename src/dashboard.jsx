@@ -9,6 +9,7 @@ import CalcDueDate from "./calcDueDate";
 import { use, useEffect, useState } from "react";
 
 const Dashboard = () => {
+    useFetch("https://project-pulse-backend-nine.vercel.app/projects")
     return (
         <h1>Dashboard Page</h1>
     )
