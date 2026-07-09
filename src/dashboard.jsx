@@ -96,7 +96,7 @@ const Dashboard = () => {
 
 
     return (
-    <div className="dbFullScreen">
+    // <div className="dbFullScreen">
         <ProjectModal onSuccess={projectRefetch}/>
         <TaskModal onSuccess={taskRefetch}/>
         <div className="fixToTop">
