@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "./navbar";
 import { currUser } from "./userContext";
-import AuthenticateUser from "./authLogic";
+import useAuthenticateUser from "./authLogic";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "./useFetch";
 import axios from "axios";
@@ -16,7 +16,7 @@ const Setting = () => {
     const [currToken, setCurrToken] = useState(localStorage.getItem("token"))
     const navigate = useNavigate()
 
-    AuthenticateUser({currToken}, "/setting")
+    useAuthenticateUser(currToken, "/setting")
     
     function handleLogout(){
         localStorage.removeItem("token")
