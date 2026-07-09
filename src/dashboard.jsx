@@ -68,7 +68,7 @@ const Dashboard = () => {
                 }
             }))
         }
-    },[projectFilterValue, data])
+    },[projectFilterValue])
 
 
     useEffect(() => {
@@ -82,7 +82,7 @@ const Dashboard = () => {
         }else{
             setFilterData(taskData?.filter(task => task.status === "Completed"))
         }
-    },[filterValue,taskData])
+    },[filterValue])
 
 
     useEffect(() => {
@@ -93,7 +93,7 @@ const Dashboard = () => {
             setProjSearchData(projectFilterData)
             setTaskSearchData(filterData)
         }
-    },[projectFilterValue, filterValue, searchValue])
+    },[projectFilterData, filterData, searchValue])
 
 
     return (
