@@ -93,7 +93,7 @@ const Dashboard = () => {
             setProjSearchData(projectFilterData)
             setTaskSearchData(filterData)
         }
-    },[projectFilterData, filterData, searchValue])
+    },[projectFilterValue, filterValue, searchValue])
 
 
     return (
