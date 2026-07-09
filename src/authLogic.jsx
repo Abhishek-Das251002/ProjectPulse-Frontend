@@ -2,7 +2,8 @@ import { useContext, useEffect} from "react";
 import { currUser } from "./userContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-export const AuthenticateUser = ({currToken},page) => {
+
+const useAuthenticateUser = (currToken,page) => {
     const {currUserInfo, setCurrUserInfo} = useContext(currUser)
     const navigate = useNavigate()
 
@@ -35,4 +36,4 @@ export const AuthenticateUser = ({currToken},page) => {
     )
 }
 
-export default AuthenticateUser;
+export default useAuthenticateUser;
