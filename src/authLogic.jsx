@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 const useAuthenticateUser = (currToken,page) => {
     const {currUserInfo, setCurrUserInfo} = useContext(currUser)
     const navigate = useNavigate()
-
-    return (
+    
         useEffect(() => {
         async function checkLoginData(){
             if(currToken){
@@ -33,7 +32,6 @@ const useAuthenticateUser = (currToken,page) => {
         checkLoginData()
 
         }, [currToken])
-    )
 }
 
 export default useAuthenticateUser;
