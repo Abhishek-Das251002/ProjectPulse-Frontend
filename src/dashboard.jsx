@@ -95,16 +95,16 @@ const Dashboard = () => {
     // },[projectFilterData, filterData, searchValue])
 
 
-    // return (
+    return (
     //     <div className="dbFullScreen">
     //     <ProjectModal onSuccess={projectRefetch}/>
     //     <TaskModal onSuccess={taskRefetch}/>
-    //     <div className="fixToTop">
-    //         <Navbar page={"dashboard"}/>
-    //         <div className="col-12 container my-3 d-lg-none">
-    //             <input type="text" className="searchInput" placeholder="    Search" onChange={handleSearch}/>
-    //         </div>
-    //     </div>
+        <div className="fixToTop">
+            <Navbar page={"dashboard"}/>
+            <div className="col-12 container my-3 d-lg-none">
+                <input type="text" className="searchInput" placeholder="    Search" onChange={handleSearch}/>
+            </div>
+        </div>
     //     <div className="col-lg-9 col-xl-10 col-12">
     //         {data && taskData
     //         ?
@@ -199,7 +199,7 @@ const Dashboard = () => {
     //         }
     //     </div>    
     //     </div>
-    //)
+    )
 }
 
 export default Dashboard;
