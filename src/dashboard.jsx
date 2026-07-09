@@ -12,62 +12,62 @@ const Dashboard = () => {
     const {data, error, refetch: projectRefetch} = useFetch("https://project-pulse-backend-nine.vercel.app/projects")
     const {data: taskData, error: taskError, refetch: taskRefetch} = useFetch("https://project-pulse-backend-nine.vercel.app/tasks")
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
-    // const [taskSearchData, setTaskSearchData] = useState([])
-    // const [filterData, setFilterData] = useState([])
-    // const [filterValue, setFilterValue] = useState("")
+    const [taskSearchData, setTaskSearchData] = useState([])
+    const [filterData, setFilterData] = useState([])
+    const [filterValue, setFilterValue] = useState("")
     
-    // const [projSearchData, setProjSearchData] = useState([])
-    // const [projectFilterData, setProjectFilterData] = useState([])
-    // const [projectFilterValue, setProjectFilterValue] = useState("")
+    const [projSearchData, setProjSearchData] = useState([])
+    const [projectFilterData, setProjectFilterData] = useState([])
+    const [projectFilterValue, setProjectFilterValue] = useState("")
 
-    // const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState("")
 
-    // function handleFilter(e){
-    //     const {value} = e.target;    
-    //     setFilterValue(value)
-    // }
+    function handleFilter(e){
+        const {value} = e.target;    
+        setFilterValue(value)
+    }
 
-    // function handleProjectFilter(e){
-    //     const {value} = e.target;
-    //     setProjectFilterValue(value)
-    // }
+    function handleProjectFilter(e){
+        const {value} = e.target;
+        setProjectFilterValue(value)
+    }
 
-    // function getProjStatus(projId){
-    //     let projStatus = ""
-    //     if(taskData){
-    //         taskData.filter(task => task.project && task.project._id === projId && task.status !== "Completed").length === 0
-    //         ?
-    //         projStatus = "Completed"
-    //         :
-    //         projStatus = "In progress"
-    //     }
-    //     return projStatus
-    // }
+    function getProjStatus(projId){
+        let projStatus = ""
+        if(taskData){
+            taskData.filter(task => task.project && task.project._id === projId && task.status !== "Completed").length === 0
+            ?
+            projStatus = "Completed"
+            :
+            projStatus = "In progress"
+        }
+        return projStatus
+    }
 
     function handleSearch(e){
         const {value} = e.target;
         setSearchValue(value.toLowerCase())
     }
 
-    // useEffect(() => {
-    //     if(!projectFilterValue){
-    //         setProjectFilterData(data)
-    //     }else if(projectFilterValue !== "Completed"){
-    //         setProjectFilterData(data?.filter(proj => {
-    //             if(getProjStatus(proj._id) !== "Completed"){
-    //                 return proj
-    //             }
-    //         }))
-    //     }else{
-    //         setProjectFilterData(data?.filter(proj => {
-    //             if(getProjStatus(proj._id) === "Completed"){
-    //                 return proj
-    //             }
-    //         }))
-    //     }
-    // },[projectFilterValue, data])
+    useEffect(() => {
+        if(!projectFilterValue){
+            setProjectFilterData(data)
+        }else if(projectFilterValue !== "Completed"){
+            setProjectFilterData(data?.filter(proj => {
+                if(getProjStatus(proj._id) !== "Completed"){
+                    return proj
+                }
+            }))
+        }else{
+            setProjectFilterData(data?.filter(proj => {
+                if(getProjStatus(proj._id) === "Completed"){
+                    return proj
+                }
+            }))
+        }
+    },[projectFilterValue, data])
 
 
     // useEffect(() => {
@@ -96,7 +96,7 @@ const Dashboard = () => {
 
 
     return (
-    //     <div className="dbFullScreen">
+    <div className="dbFullScreen">
         <ProjectModal onSuccess={projectRefetch}/>
         <TaskModal onSuccess={taskRefetch}/>
         <div className="fixToTop">
